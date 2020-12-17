@@ -17,10 +17,10 @@ $("#find-city").on("click", function (event) {
         console.log(response)
         var reportDate = new Date(response.dt * 1000).toLocaleDateString();
 
-        $(".city").text(("City: " + (response.name) + " (" + reportDate + ")"));
-        $(".temp").text("Temp: " + (Math.floor(response.main.temp)) + '° F');
-        $(".humidity").text("Humidity: " + (response.main.humidity) + "%");
-        $(".wind").text("Wind Speed: " + (Math.floor(response.wind.speed)) + ' mph');
+        $(".city").text((response.name) + " (" + reportDate + ")");
+        $(".temp").text(Math.floor(response.main.temp) + '° F');
+        $(".humidity").text((response.main.humidity) + "%");
+        $(".wind").text(Math.floor(response.wind.speed) + ' mph');
 
         currentUvIndex(response.coord.lon, response.coord.lat);
 
@@ -35,9 +35,34 @@ function currentUvIndex(lon, lat) {
         url: uvqURL,
         method: "GET"
     }).then(function (response) {
-        $(".uvIndex").text("UV Index: " + (response.value))
+        $(".uvIndex").text(response.value)
     })
+
+
+    //determine severity of UV Index for color coding
+    var UVbg = null;
+    var textColor = null;
+    if (currentUvIndex < 2) {
+        UVbg = "green";
+        textColor = "white";
+        severity = "low"
+    } else if (currentUvIndex < 6) {
+        UVbg = "yellow";
+        textColor = "black";
+    } else if (currentUvIndex < 8) {
+        UVbg = "orange";
+        textColor = "black";
+    } else if (currentUvIndex < 11) {
+        UVbg = "red";
+        textColor = "white";
+    } else {
+        UVbg = "violet";
+        textColor = "white";
+    }
+    $(".uvIndex").css("backgroundColor", UVbg)
+        .css("color", textColor);
 }
+
 
 // 5-day forecast
 $("#find-city").on("click", function (event) {
