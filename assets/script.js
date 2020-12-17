@@ -8,10 +8,11 @@ $("#find-city").on("click", function (event) {
 
     var apiKey = "&apikey=5548be92d388f7fbaadf4277d9c3c68d"
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + apiKey + "&units=imperial";
-
+    // making ajax call
     $.ajax({
         url: queryURL,
         method: "GET"
+        // once we recieve the data, do something
     }).then(function (response) {
         console.log(response)
         var reportDate = new Date(response.dt * 1000).toLocaleDateString();
@@ -19,7 +20,32 @@ $("#find-city").on("click", function (event) {
         $(".city").text(("City: " + (response.name) + " (" + reportDate + ")"));
         $(".temp").text("Temp: " + (Math.floor(response.main.temp)) + '° F');
         $(".humidity").text("Humidity: " + (response.main.humidity) + "%");
-        $(".wind").text("Wind Speed: " + (Math.floor(response.wind.speed)) + ' mph');;
+        $(".wind").text("Wind Speed: " + (Math.floor(response.wind.speed)) + ' mph');
+
+    });
+})
+
+// 5-day forecast
+$("#find-city").on("click", function (event) {
+    event.preventDefault();
+
+    var city = $("#city-input").val();
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&apikey=5548be92d388f7fbaadf4277d9c3c68d" + "&units=imperial";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+
+        for (var i = 0; i < 5; i++) {
+            var reportDate = new Date(response.list[((i + 1) * 8) - 1].dt * 1000).toLocaleDateString();
+
+            $('#fDate' + i).html(reportDate)
+            $('#fTemp' + i).html(Math.floor(response.list[((i + 1) * 8) - 1].main.temp) + '° F');
+            $('#fHum' + i).html(response.list[((i + 1) * 8) - 1].main.humidity + "%");
+
+        }
     });
 
-});
+})
