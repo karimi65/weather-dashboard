@@ -12,11 +12,27 @@
 
 <body>
 
+    <div class="container">
 
+        <!--Jumbotron for Title-->
+        <div class="jumbotron container-fluid mt-2 text-center p-2">
+            <h1><strong>Weather Dashboard</strong></h1>
+        </div>
+
+        <!-- This form will be where users input the name of city -->
+        <div class="input-group mb-3" id="searchCity">
+            <input type="text" id="city-input" placeholder="Name of City">
+
+            <button class="btn btn-outline-secondary" type="button" id="find-city">search</button>
+
+        </div>
+
+    </div>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>
+
 
 </html>
