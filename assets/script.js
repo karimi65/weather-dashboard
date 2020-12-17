@@ -22,8 +22,22 @@ $("#find-city").on("click", function (event) {
         $(".humidity").text("Humidity: " + (response.main.humidity) + "%");
         $(".wind").text("Wind Speed: " + (Math.floor(response.wind.speed)) + ' mph');
 
+        currentUvIndex(response.coord.lon, response.coord.lat);
+
     });
 })
+
+// get current UV index
+function currentUvIndex(lon, lat) {
+
+    var uvqURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&apikey=5548be92d388f7fbaadf4277d9c3c68d";
+    $.ajax({
+        url: uvqURL,
+        method: "GET"
+    }).then(function (response) {
+        $(".uvIndex").text("UV Index: " + (response.value))
+    })
+}
 
 // 5-day forecast
 $("#find-city").on("click", function (event) {
