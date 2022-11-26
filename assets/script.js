@@ -95,6 +95,9 @@ $("#find-city").on("click", function (event) {
       $("#fTemp" + i).html(
         Math.floor(response.list[(i + 1) * 8 - 1].main.temp) + "° F"
       );
+      $("#fFeels" + i).html(
+        Math.floor(response.list[(i + 1) * 8 - 1].main.feels_like) + "° F"
+      );
       $("#fHum" + i).html(response.list[(i + 1) * 8 - 1].main.humidity + "%");
     }
   });

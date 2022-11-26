@@ -1,85 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
     <title>Weather Dashboard</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="container">
+      <!--Jumbotron for Title-->
+      <div class="jumbotron container-fluid mt-2 text-center p-2">
+        <h1><strong>Weather Dashboard</strong></h1>
+      </div>
 
-        <!--Jumbotron for Title-->
-        <div class="jumbotron container-fluid mt-2 text-center p-2">
-            <h1><strong>Weather Dashboard</strong></h1>
+      <!-- This form will be where users input the name of city -->
+      <div class="input-group mb-3" id="searchCity">
+        <input type="text" id="city-input" placeholder="Name of City" />
+
+        <button class="btn btn-outline-secondary" type="button" id="find-city">
+          search
+        </button>
+      </div>
+
+      <!-- We'll be dumping our contents in here -->
+      <div class="city-view">
+        <p>City: <span class="city"></span></p>
+        <p>Temp: <span class="temp"></span></p>
+        <p>Humidity: <span class="humidity"></span></p>
+        <p>Wind Speed: <span class="wind"></span></p>
+        <p>UV Index: <span class="uvIndex"></span></p>
+      </div>
+
+      <!--Row for future data to be dumped here-->
+      <div class="col-sm-12" id="future-weather">
+        <h3>5-Day Forecast:</h3>
+        <div class="row text-light">
+          <div
+            class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded"
+          >
+            <p id="fDate0"></p>
+            <p id="fImg0"></p>
+            <p>Temp: <span id="fTemp0"></span></p>
+            <p>Feels like: <span id="fFeels0"></span></p>
+            <p>Humidity: <span id="fHum0"></span></p>
+          </div>
+          <div
+            class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded"
+          >
+            <p id="fDate1"></p>
+            <p id="fImg1"></p>
+            <p>Temp: <span id="fTemp1"></span></p>
+            <p>Feels like: <span id="fFeels1"></span></p>
+            <p>Humidity: <span id="fHum1"></span></p>
+          </div>
+          <div
+            class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded"
+          >
+            <p id="fDate2"></p>
+            <p id="fImg2"></p>
+            <p>Temp: <span id="fTemp2"></span></p>
+            <p>Feels like: <span id="fFeels2"></span></p>
+            <p>Humidity: <span id="fHum2"></span></p>
+          </div>
+          <div
+            class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded"
+          >
+            <p id="fDate3"></p>
+            <p id="fImg3"></p>
+            <p>Temp: <span id="fTemp3"></span></p>
+            <p>Feels like: <span id="fFeels3"></span></p>
+            <p>Humidity: <span id="fHum3"></span></p>
+          </div>
+          <div
+            class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded"
+          >
+            <p id="fDate4"></p>
+            <p id="fImg4"></p>
+            <p>Temp: <span id="fTemp4"></span></p>
+            <p>Feels like: <span id="fFeels4"></span></p>
+            <p>Humidity: <span id="fHum4"></span></p>
+          </div>
         </div>
-
-        <!-- This form will be where users input the name of city -->
-        <div class="input-group mb-3" id="searchCity">
-            <input type="text" id="city-input" placeholder="Name of City">
-
-            <button class="btn btn-outline-secondary" type="button" id="find-city">search</button>
-
-        </div>
-
-        <!-- We'll be dumping our contents in here -->
-        <div class="city-view">
-            <p>City: <span class="city"></span></p>
-            <p>Temp: <span class="temp"></span></p>
-            <p>Humidity: <span class="humidity"></span></p>
-            <p>Wind Speed: <span class="wind"></span></p>
-            <p>UV Index: <span class="uvIndex"></span></p>
-        </div>
-
-
-
-        <!--Row for future data to be dumped here-->
-        <div class="col-sm-12" id="future-weather">
-            <h3>5-Day Forecast:</h3>
-            <div class="row text-light">
-                <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                    <p id="fDate0"></p>
-                    <p id="fImg0"></p>
-                    <p>Temp: <span id="fTemp0"></span></p>
-                    <p>Humidity: <span id="fHum0"></span></p>
-                </div>
-                <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                    <p id="fDate1"></p>
-                    <p id="fImg1"></p>
-                    <p>Temp: <span id="fTemp1"></span></p>
-                    <p>Humidity: <span id="fHum1"></span></p>
-                </div>
-                <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                    <p id="fDate2"></p>
-                    <p id="fImg2"></p>
-                    <p>Temp: <span id="fTemp2"></span></p>
-                    <p>Humidity: <span id="fHum2"></span></p>
-                </div>
-                <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                    <p id="fDate3"></p>
-                    <p id="fImg3"></p>
-                    <p>Temp: <span id="fTemp3"></span></p>
-                    <p>Humidity: <span id="fHum3"></span></p>
-                </div>
-                <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                    <p id="fDate4"></p>
-                    <p id="fImg4"></p>
-                    <p>Temp: <span id="fTemp4"></span></p>
-                    <p>Humidity: <span id="fHum4"></span></p>
-                </div>
-            </div>
-        </div>
-
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/script.js"></script>
-</body>
-
-
+  </body>
 </html>
