@@ -95,6 +95,9 @@ $("#find-city").on("click", function (event) {
       $("#fTemp" + i).html(
         Math.floor(response.list[(i + 1) * 8 - 1].main.temp) + "° F"
       );
+      $("#fDescrip" + i).html(
+        response.list[(i + 1) * 8 - 1].weather[0].description
+      );
       $("#fFeels" + i).html(
         Math.floor(response.list[(i + 1) * 8 - 1].main.feels_like) + "° F"
       );
