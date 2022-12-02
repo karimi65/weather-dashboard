@@ -98,7 +98,11 @@ $("#find-city").on("click", function (event) {
       $("#fDescrip" + i).html(
         response.list[(i + 1) * 8 - 1].weather[0].description
       );
-      $("#fIcon" + i).html(response.list[(i + 1) * 8 - 1].weather[0].icon);
+      $("#fIcon" + i).html(
+        response.list[(i + 1) * 8 - 1].weather[0].icon +
+          "http://openweathermap.org/img/wn/" +
+          "@2x.png"
+      );
       $("#fFeels" + i).html(
         Math.floor(response.list[(i + 1) * 8 - 1].main.feels_like) + "° F"
       );
